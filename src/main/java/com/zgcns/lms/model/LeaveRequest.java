@@ -32,7 +32,7 @@ public class LeaveRequest {
     private RequestStatus status = RequestStatus.PENDING;
 
 
-    @ManyToOne(cascade = CascadeType.PERSIST , fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.PERSIST )
     @JoinColumn(name = "employee_id")
     private Employee employee;
 

@@ -63,7 +63,7 @@ public class LeaveRequestController {
         LeaveRequest savedLeaveRequest = leaveRequestService.saveLeaveRequest(leaveRequest);
         return new ResponseEntity<>(savedLeaveRequest, HttpStatus.CREATED);
     }
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<LeaveRequest> updateLeaveRequest(@PathVariable Long id, @RequestBody LeaveRequest leaveRequest) {
         Optional<LeaveRequest> existingLeaveRequest = leaveRequestService.getLeaveRequestById(id);
         if (existingLeaveRequest.isEmpty()) {
