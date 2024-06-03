@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,6 +50,7 @@ public class LeaveRequestController {
         return leaveRequest.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+  
 
 //    @PostMapping
 //    public ResponseEntity<LeaveRequest> createLeaveRequest(@RequestBody LeaveRequest leaveRequest) {
@@ -58,7 +58,7 @@ public class LeaveRequestController {
 //        return new ResponseEntity<>(savedLeaveRequest, HttpStatus.CREATED);
 //    }
 
-    @PostMapping("/{id}")
+    @PostMapping
     public ResponseEntity<LeaveRequest> createLeaveRequest(@RequestBody LeaveRequest leaveRequest) {
         LeaveRequest savedLeaveRequest = leaveRequestService.saveLeaveRequest(leaveRequest);
         return new ResponseEntity<>(savedLeaveRequest, HttpStatus.CREATED);
@@ -101,7 +101,7 @@ public class LeaveRequestController {
         return new ResponseEntity<>(leaveRequests, HttpStatus.OK);
     }
     
-    @GetMapping("empId/{empId}")
+    @GetMapping("/user/{empId}")
     public ResponseEntity<List<LeaveRequest>> getAllLeaveRequestByEmployeeId(@PathVariable Long empId) {
         List<LeaveRequest> leaveRequests = leaveRequestService.getAllLeaveRequestByEmployeeId(empId);
         if (leaveRequests != null && !leaveRequests.isEmpty()) {
